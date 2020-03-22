@@ -1,0 +1,12 @@
+client
+dev tun
+proto udp
+remote ipaddr 1194
+remote-cert-tls server
+tls-auth ta.key 1
+cipher AES-128-CBC
+auth SHA512
+auth-nocache
+comp-lzo
+route-method  exe
+route-delay 2
