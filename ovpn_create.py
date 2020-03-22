@@ -5,7 +5,7 @@ import time
 #путь к RSA
 rsa_path = ('/etc/openvpn/rsa')
 
-name = str(input('Введите имя: '))
+name = str(input('Введите имя пользователя: '))
 os.chdir(rsa_path)
 os.system('. ./vars')
 #задержка чтобы успели подключится vars
