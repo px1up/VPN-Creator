@@ -1,12 +1,15 @@
 client
-dev tun
-proto udp
+resolv-retry infinite
+nobind
 remote ipaddr 1194
-remote-cert-tls server
-tls-auth ta.key 1
-cipher AES-128-CBC
-auth SHA512
-auth-nocache
+proto udp
+dev tun
 comp-lzo
-route-method  exe
-route-delay 2
+auth-nocache
+remote-cert-tls server
+float
+keepalive 10 120
+persist-key
+persist-tun
+verb 1
+
