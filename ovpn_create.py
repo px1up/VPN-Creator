@@ -25,16 +25,16 @@ print('\n' ,'\033[1;31;40m При создании сертификата вве
 subprocess.check_call(['./easyrsa', 'build-client-full', name], cwd='/usr/share/easy-rsa/3')
 
 #Копирование файлов сертификата в директорию
-os.system('cp /usr/share/easy-rsa/3/pki/issued/' + name + '.crt ' + '/usr/share/easy-rsa/3/pki/private/' +  name +'.key '+ '/etc/openvpn/keys/ca.crt /etc/openvpn/keys/ta.key /tmp/keys')
-os.system('chmod -R a+r /tmp/keys')
+os.system('cp /usr/share/easy-rsa/3/pki/issued/' + name + '.crt ' + '/usr/share/easy-rsa/3/pki/private/' +  name +'.key '+ '/etc/openvpn/keys/ca.crt /etc/openvpn/keys/ta.key /home/OVPN_tmp/keys')
+os.system('chmod -R a+r /home/OVPN_tmp/keys')
 
-#Необходимо создать папку /tmp/OVPN_temp
+#Необходимо создать папку /home/OVPN_tmp/OVPN_temp
 #Чистим временную папку OVPN
-os.system('rm -r /tmp/OVPN_temp/*')
+os.system('rm -r /home/OVPN_tmp/OVPN_temp/*')
 #Копируем во временную папку
-os.system('cp /tmp/keys/' + name + '.crt ' + '/tmp/keys/' +  name +'.key '+ '/tmp/keys/ca.crt /tmp/keys/ta.key /tmp/keys/template /tmp/OVPN_temp')
+os.system('cp /home/OVPN_tmp/keys/' + name + '.crt ' + '/home/OVPN_tmp/keys/' +  name +'.key '+ '/home/OVPN_tmp/keys/ca.crt /home/OVPN_tmp/keys/ta.key /home/OVPN_tmp/keys/template /home/OVPN_tmp/OVPN_temp')
 
-os.chdir('/tmp/OVPN_temp')
+os.chdir('/home/OVPN_tmp/OVPN_temp')
 os.rename('ta.key','ta')
 
 #Поучаем файл с расширением *.key
@@ -121,7 +121,7 @@ with open("client.ovpn", "a") as file:
 os.rename('ta','ta.key')
 os.rename('client.ovpn', name + ".ovpn")
 
-os.system('cp /tmp/OVPN_temp/' + name + '.ovpn' + ' /home/OVPN/')
+os.system('cp /home/OVPN_tmp/OVPN_temp/' + name + '.ovpn' + ' /home/OVPN/')
 os.system('chmod 777 -R /home/OVPN/')
 print("Файл успешно создан")
 
